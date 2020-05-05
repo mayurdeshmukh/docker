@@ -1,0 +1,20 @@
+Steps to push docker image to Azure Container Registry
+
+1. Login using Azure cli
+
+2. Create a registry on ACR
+ az acr create --name mayurdocker --resource-group mayur --sku  Basic
+ 
+ It will provide registry URL like this 
+ 
+3. Now check login into your acr
+az acr login -n mayurdocker
+
+4. Now tag your local image with acr repo URL and tag
+docker tag myapp:latest mayurdocker.azurecr.io/myapp:v1
+
+5. Push newly create image to acr 
+docker push mayurdocker.azurecr.io/myapp:v1
+
+6 Check image on repo
+ az acr repository list -n mayurdocker
